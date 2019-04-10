@@ -14,12 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-
+import com.example.dao.UserDao;
+import com.example.model.User;
 import com.example.testphoto1.GrabPhoto;
+
+
+
 
 @RestController
 public class EmployeeCtrl {
+	
+	final String url = "https://s3.us-east-2.amazonaws.com/theupchuckbucket/";
 
+	public static UserDao userDao = new UserDao();
+	
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolver() {
 	   CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
@@ -29,13 +37,33 @@ public class EmployeeCtrl {
 	
 	
 	// @CrossOrigin(origins="http://localhost:4200") is used to handle the request from a different origin
-		@RequestMapping(value="/upload", method=RequestMethod.POST)
-		public String uploadPhoto(@RequestParam(name="file")MultipartFile p, ModelMap modelMap) 
+		@RequestMapping(value="/updateprofile", method=RequestMethod.POST)
+		public String updateProfile(@RequestParam(name="file")MultipartFile p, @RequestParam String firstName, 
+				@RequestParam String lastName, @RequestParam String email, @RequestParam String password) 
 		{
 			try {
-				modelMap.addAttribute("file", p);
+				// modelMap.addAttribute("file", p);
+//				modelMap.addAttribute("firstName", firstname);
+//				modelMap.addAttribute("lastName", lastname);
 				InputStream i = p.getInputStream();
-				GrabPhoto.grabPho(i);
+				String photoName = GrabPhoto.grabPho(i);
+				
+				// System.out.println(email);
+				
+				User u = userDao.selectByCred(email);
+				
+				System.out.println(u);
+				
+				u.setProfilePic(url+photoName);
+				u.setFirstname(firstName);
+				u.setLastname(lastName);
+				u.setEmail(email);
+				u.setPassword(password);
+				
+				
+				
+				userDao.updateUserProfile(u);
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

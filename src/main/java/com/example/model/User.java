@@ -18,6 +18,9 @@ import javax.persistence.Table;
 @Table(name="USERS")
 public class User {
 	
+	@Column(name="profilepic")
+	private String profilePic;
+	
 	@Column(name="firstname", nullable=false)
 	private String firstname;
 	
@@ -74,11 +77,19 @@ public class User {
 		this.password = password;
 		this.email = email;
 	}
+	
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
 
 	public String getFirstname() {
 		return firstname;
 	}
-
+	
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}

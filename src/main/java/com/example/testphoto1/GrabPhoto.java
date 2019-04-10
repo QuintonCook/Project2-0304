@@ -5,6 +5,7 @@ package com.example.testphoto1;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
@@ -16,10 +17,11 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 
 public class GrabPhoto {
 
-   public static void grabPho(InputStream i) throws IOException {
+   public static String grabPho(InputStream i) throws IOException {
         String clientRegion = "us-east-2";
         String bucketName = "theupchuckbucket";
-        String fileObjKeyName = "test";
+        String timestamp = new Timestamp(System.currentTimeMillis()).toString();
+        //2016-11-16 06:43:19.77
 
         try {
             AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
@@ -32,7 +34,7 @@ public class GrabPhoto {
             metadata.addUserMetadata("x-amz-meta-title", "someTitle");
             
             // Upload a file as a new object with ContentType and title specified.
-            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, i, metadata);
+            PutObjectRequest request = new PutObjectRequest(bucketName, timestamp, i, metadata);
             
             s3Client.putObject(request);
         }
@@ -46,6 +48,8 @@ public class GrabPhoto {
             // couldn't parse the response from Amazon S3.
             e.printStackTrace();
         }
+        
+        return timestamp;
     }
 }
 
