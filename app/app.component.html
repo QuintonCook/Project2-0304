@@ -2,93 +2,30 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Project One - Expense Reimbursement System</title>
+<title>Proj2</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<style>
-  .body{
-  background-color: #EDF0F5;
-  height: 859px;
-}
-  .titleName {
-  height: 104px;
-  background-color:	#3B5999;
-  color: white;
-  padding: 20px;
-}
-.header{
-  float: right;
-  position: relative; right:480px; top: -68px;
-}
-.header1{
-  float: right;
-  position: relative; right:41px; top: -68px;
-}
-.header2{
-  float: right;
-  position: relative; top: -45px; right: -240px;
-}
-.loginButton {
-  background-color: #4067B6;
-  border-color: rgb(57, 57, 58);
-  border-width: thin;
-  color: white;
-}
-
-.div1{
-  border: solid black 1px;
-  float: left;
-  margin-top: 80px;
-  height: 500px;
-  width: 600px;
-
-}
-.div2{
-  border: solid black 1px;
-  float: right;
-  height: 545px;
-  width: 500px;
-}
-.input{
-  border-radius: 5px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-}
-
-.input1{
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-.input2{
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-.submitButton{
-  background-color:	#5F994D;
-  border-color: rgb(57, 57, 58);
-  border-width: thin;
-  color: white;
-}
-
-</style>
 
 </head>
 <body>
+
+  <!--
+
 <div class="body">
     <div class="titleName">
         <h1><b><font size="7">theSocialNetwork</font></b></h1>
         <div class="header">
           Email or phone
           <br>
-          <input type="text" id="username" size="23">
+          <input type="text" #titleEmail id="username" size="23">
         </div>
         <div class="header1">
           Password
           <br>
-          <input type="password" id="password" size="23">
+          <input type="password" #titlePass id="password" size="23">
         </div>
         <div class="header2">
-          <button class="loginButton" type="button" (click) = "showText(titleInput.value)" id="myText">Log In</button>
+          <button class="loginButton" type="button" (click) = "showText(titleEmail.value, titlePass.value)" id="myText">Log In</button>
         </div>
       </div>
   <div class="container">
@@ -103,43 +40,46 @@
         <div class="form-row">
           <div class="col">
             <label for="exampleInputFirstName">Firstname</label>
-            <input type="text" class="form-control" placeholder="First name">
+            <input type="text" #First class="form-control" placeholder="First name" name="firstName">
           </div>
           <div class="col">
               <label for="exampleInputLastName">Lastname</label>
-            <input type="text" class="form-control" placeholder="Last name">
+            <input type="text" #Last class="form-control" placeholder="Last name" name="lastName">
           </div>
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="email" #Email class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" #Password class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" (click) = "getText(First.value, Last.value, Email.value, Password.value)" class="btn btn-primary" id="submitButton">Submit</button>
       </form>
 
     </div>
-    <div class= "div2">
-      <p>
-        <font size="7"><b>Sign up</b></font>
-        <br>
-        <font size="4">It's free and always will be</font>
-      </p>
-      <input type="text" id="firstname" class="input" placeholder="First name">
-      <input type="text" id="lastname" class="input" placeholder="Last name">
-      <br>
-      <input type="text" id="email" class="input1" placeholder="Mobile number or email" size="46.5">
-      <br>
-      <input type="text" id="password" class="input2" placeholder="New password" size="46.5">
-      <br>
-      <button class="submitButton" type="submit">Sign Up</button>
-    </div>
+
+
+    
+
+
   </div>
 </div>
+-->
+
+
+
+<app-header></app-header>
+
+<app-navbar></app-navbar>
+
+
+<app-update></app-update>
+
+
+
 <script type="text/javascript" src="../js/Index.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -151,3 +91,4 @@
 
 
 <router-outlet></router-outlet>
+

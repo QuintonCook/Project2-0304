@@ -1,0 +1,23 @@
+.bar {
+  /*display: inline-block;*/
+  float: left;
+  height: 754px;
+  width: 200px;
+  background: darkgrey;
+  border-color: black;
+  border-width: thin;
+}
+
+nav{
+  font-size: 150%;
+}
+nav a:visited, a link{
+  color: white;
+}
+nav a:hover{
+  color: white;
+  background-color: lightslategray;
+}
+nav a:active{
+  color: lightskyblue;
+}
