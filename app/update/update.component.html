@@ -1,48 +1,28 @@
 <div class="updateInfo">
+  <b><font size="5">Update Profile</font></b>
   <form>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+          <label for="inputEmail4">First name</label>
+          <input type="email" class="form-control" id="inputEmail4" placeholder="First name" name="updateFirstName">
         </div>
         <div class="form-group col-md-6">
-          <label for="inputPassword4">Password</label>
-          <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+          <label for="inputPassword4">Last name</label>
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Last name" name="updateLastName">
         </div>
       </div>
       <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <label for="inputAddress">Email</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Email" name="updateEmail">
       </div>
       <div class="form-group">
-        <label for="inputAddress2">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputState">State</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-        </div>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
-        </div>
+        <label for="inputAddress2">Password</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Password" name="updatePassword">
       </div>
       <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            Check me out
-          </label>
+          <label for="exampleFormControlTextarea1">Description</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="updateDescription"></textarea>
         </div>
-      </div>
       <button type="submit" class="btn btn-primary">Sign in</button>
   </form>
 </div>
@@ -51,10 +31,16 @@
     <img src="https://cdn.vox-cdn.com/thumbor/TiwabydzgLgAVBjjJvAO_dnKo_o=/0x16:1103x751/1200x800/filters:focal(0x16:1103x751)/cdn.vox-cdn.com/uploads/chorus_image/image/46840054/Screenshot_2015-07-27_15.11.13.0.0.png" alt="userPhoto">
     <br>
     <b><font size="5">Update Picture</font></b>
+    <form action="/action_page.php">
+      <input type="file" name="myFile" class="btn btn-light" id="chooseButton" name="fileName">
+      <input type="submit" class="btn btn-primary" id="submitButton">
+    </form>
+    <!--
     <div class="custom-file">
         <input type="file" class="custom-file-input" id="customFile">
         <label class="custom-file-label" for="customFile">Choose file</label>
     </div>
+    -->
 </div>
 
 <!--

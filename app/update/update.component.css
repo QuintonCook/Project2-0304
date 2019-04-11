@@ -3,7 +3,8 @@
     margin-right: -100px;
     border: 2px solid black;
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 55px;
+    padding: 10px;
 }
 .updatePic{
     float: left;
@@ -19,4 +20,10 @@ img{
 }
 #customFile{
     width: 10px;
+}
+#chooseButton{
+    width: 500px;
+}
+#submitButton{ 
+    float: right;
 }
