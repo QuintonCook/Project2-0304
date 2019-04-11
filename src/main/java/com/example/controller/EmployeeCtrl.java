@@ -125,7 +125,7 @@ public class EmployeeCtrl {
 	}
 	
 
-	// GET SEARCH USER
+	// GET SEARCH USER BY FIRSTNAME AND LASTNAME
 	@RequestMapping(value = "/searchuser", method = RequestMethod.GET)
 	public @ResponseBody List<User> getSearch(@RequestParam SearchRequest s)
 	{
@@ -134,5 +134,22 @@ public class EmployeeCtrl {
 		return userList; 
 	}
 	
+	// GET SEARCH USER BY EMAIL
+	@RequestMapping(value = "/searchuseremail", method = RequestMethod.GET)
+	public @ResponseBody User getSearchEmail(@RequestParam String email)
+	{
+		User u = userDao.selectByCred(email);
+		
+		return u;
+	}
+	
+	// POST NUMBER OF LIKES 
+	@RequestMapping(value = "/likepost", method = RequestMethod.POST)
+	public @ResponseBody void updateNumberOfLikes(@RequestParam Post p)
+	{
+		postDao.updatePostLikes(p);
+		
+		
+	}
 	
 }

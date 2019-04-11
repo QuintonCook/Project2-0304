@@ -42,5 +42,14 @@ public class PostDao {
 		List<Post> postList = ses.createCriteria(Post.class).list();
 		return postList;
 	}
+	
+	public void updatePostLikes(Post po) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = ses.beginTransaction();
+		
+		ses.merge(po);
+		tx.commit();
+		
+	}
 
 }

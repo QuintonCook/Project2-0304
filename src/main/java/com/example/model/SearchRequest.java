@@ -11,6 +11,7 @@ public class SearchRequest {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
+		
 	}
 
 	public String getFirstName() {
