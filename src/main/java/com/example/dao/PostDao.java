@@ -29,7 +29,7 @@ public class PostDao {
 		
 		@SuppressWarnings("unchecked")
 		Query<Post> query = ses.createQuery("from Post where key = :email");
-		query.setParameter("email", email);
+		query.setParameter("email", email.getEmail());
 		
 		List<Post> list = query.list();
 		return list;

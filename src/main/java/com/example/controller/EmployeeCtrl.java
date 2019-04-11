@@ -2,7 +2,10 @@ package com.example.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,9 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.example.dao.PostDao;
 import com.example.dao.UserDao;
 import com.example.model.LoginRequest;
+import com.example.model.Post;
 import com.example.model.RegisterRequest;
+import com.example.model.SearchRequest;
 import com.example.model.User;
 import com.example.testphoto1.GrabPhoto;
 
@@ -23,7 +29,11 @@ public class EmployeeCtrl {
 
 	final String url = "https://s3.us-east-2.amazonaws.com/theupchuckbucket/";
 
-	public static UserDao userDao = new UserDao();
+	@Autowired
+	public UserDao userDao;
+	
+	@Autowired
+	public PostDao postDao;
 
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolver() {
@@ -105,5 +115,24 @@ public class EmployeeCtrl {
 		userDao.updateUserProfile(u);
 	}
 	
+	// GET POST
+	@RequestMapping(value = "/getpost", method = RequestMethod.GET)
+	public @ResponseBody List<Post> getPosts(@RequestParam User u)
+	{
+		List<Post> postList = postDao.searchByPoster(u); 
+		
+		return postList; 
+	}
+	
 
+	// GET SEARCH USER
+	@RequestMapping(value = "/searchuser", method = RequestMethod.GET)
+	public @ResponseBody List<User> getSearch(@RequestParam SearchRequest s)
+	{
+		List<User> userList = userDao.searchByFirstLast(s.getFirstName(), s.getLastName());
+		
+		return userList; 
+	}
+	
+	
 }
