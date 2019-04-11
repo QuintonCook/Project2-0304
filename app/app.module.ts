@@ -7,6 +7,10 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UpdateComponent } from './update/update.component';
+import { FeedComponent } from './feed/feed.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -14,11 +18,15 @@ import { UpdateComponent } from './update/update.component';
     HomepageComponent,
     HeaderComponent,
     NavbarComponent,
-    UpdateComponent
+    UpdateComponent,
+    FeedComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
