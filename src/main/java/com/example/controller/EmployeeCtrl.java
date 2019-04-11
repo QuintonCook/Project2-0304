@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.example.dao.UserDao;
+import com.example.model.LoginRequest;
+import com.example.model.RegisterRequest;
 import com.example.model.User;
 import com.example.testphoto1.GrabPhoto;
 
@@ -30,6 +32,7 @@ public class EmployeeCtrl {
 		return multipartResolver;
 	}
 
+	// UPDATE PROFILE REQUEST
 	// @CrossOrigin(origins="http://localhost:4200") is used to handle the request
 	// from a different origin
 	@RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
@@ -66,15 +69,16 @@ public class EmployeeCtrl {
 		return null;
 	}
 
+	// LOGIN REQUEST
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody User login(@RequestParam String email, @RequestParam String password) {
-		User u = userDao.selectByCred(email);
+	public @ResponseBody User login(@RequestParam LoginRequest l) {
+		User u = userDao.selectByCred(l.getLoginEmail());
 
-		System.out.println(u);
+		// System.out.println(u);
 
 		// catch null pointer exceptions later on
 		try {
-			if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
+			if (u.getEmail().equals(l.getLoginEmail()) && u.getPassword().equals(l.getLoginPassword())) {
 				return u;// go to home page
 			}
 		} catch (NullPointerException e) {
@@ -83,5 +87,23 @@ public class EmployeeCtrl {
 
 		return null;
 	}
+	
+	// REGISTER REQUEST
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public @ResponseBody void login(@RequestParam RegisterRequest r)
+	{
+		userDao.insert(r.toUser());
+	}
+	
+	// RESET PASSWORD REQUEST 
+	@RequestMapping(value = "/passwordreset", method = RequestMethod.POST)
+	public @ResponseBody void passwordReset(@RequestParam LoginRequest l) {
+		User u = userDao.selectByCred(l.getLoginEmail());
+		
+		u.setPassword(l.getLoginPassword());
+		
+		userDao.updateUserProfile(u);
+	}
+	
 
 }
