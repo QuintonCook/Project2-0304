@@ -42,23 +42,33 @@ public class EmployeeCtrl {
 		return multipartResolver;
 	}
 
-	// UPDATE PROFILE REQUEST
-	// @CrossOrigin(origins="http://localhost:4200") is used to handle the request
-	// from a different origin
-	@RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
-	public void updateProfile(@RequestParam(name = "file", required = false) MultipartFile p,
-			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
-			@RequestParam String password, @RequestParam String description) throws IOException {
-		// modelMap.addAttribute("file", p);
-		// modelMap.addAttribute("firstName", firstname);
-		// modelMap.addAttribute("lastName", lastname);
+	@RequestMapping(value = "/insertpost", method = RequestMethod.POST)
+	public void insertPost(@RequestParam(name = "file", required = false) MultipartFile p, @RequestParam String body, 
+			@RequestParam String email) throws IOException
+	{
 		String photoName = null;
 		if (p != null) {
 			InputStream i = p.getInputStream();
 			photoName = GrabPhoto.grabPho(i);
 		}
+		
+		User u = userDao.selectByCred(email);
 
-		// System.out.println(email);
+		Post post = new Post(photoName, body, u);
+		
+		postDao.insert(post);
+	}
+	
+	@RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
+	public void updateProfile(@RequestParam(name = "file", required = false) MultipartFile p,
+			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
+			@RequestParam String password, @RequestParam String description) throws IOException {
+
+		String photoName = null;
+		if (p != null) {
+			InputStream i = p.getInputStream();
+			photoName = GrabPhoto.grabPho(i);
+		}
 
 		User u = userDao.selectByCred(email);
 
@@ -78,11 +88,9 @@ public class EmployeeCtrl {
 
 	// LOGIN REQUEST
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody User login(@RequestBody LoginRequest l) {
+	public @ResponseBody User login(@RequestBody LoginRequest l) throws IllegalAccessException {
 
-		System.out.println(l);
-
-		if (l.getLoginEmail() != null && l.getLoginPassword() != null) {
+		if (!l.isNull()) {
 			User u = userDao.selectByCred(l.getLoginEmail());
 			return u;
 		} else {
@@ -93,18 +101,23 @@ public class EmployeeCtrl {
 
 	// REGISTER REQUEST
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public @ResponseBody void register(@RequestParam RegisterRequest r) {
-		userDao.insert(r.toUser());
+	public @ResponseBody void register(@RequestBody RegisterRequest r) throws IllegalAccessException {
+
+		if (!r.isNull()) {
+			userDao.insert(r.toUser());
+		}
+
 	}
 
 	// RESET PASSWORD REQUEST
 	@RequestMapping(value = "/passwordreset", method = RequestMethod.POST)
-	public @ResponseBody void passwordReset(@RequestParam LoginRequest l) {
-		User u = userDao.selectByCred(l.getLoginEmail());
+	public @ResponseBody void passwordReset(@RequestBody LoginRequest l) throws IllegalAccessException {
 
-		u.setPassword(l.getLoginPassword());
-
-		userDao.updateUserProfile(u);
+		if (!l.isNull()) {
+			User u = userDao.selectByCred(l.getLoginEmail());
+			u.setPassword(l.getLoginPassword());
+			userDao.updateUserProfile(u);
+		}
 	}
 
 	// GET POST

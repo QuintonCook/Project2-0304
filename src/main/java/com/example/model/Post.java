@@ -57,6 +57,8 @@ public class Post {
 		this.url = url;
 		this.body = body;
 		this.key = key;
+		
+		numberOfLikes = 0;
 	}
 
 	public Post(String url, int postId) {

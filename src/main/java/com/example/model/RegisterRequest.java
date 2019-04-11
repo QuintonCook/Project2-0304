@@ -1,5 +1,7 @@
 package com.example.model;
 
+import java.lang.reflect.Field;
+
 public class RegisterRequest {
 	
 	String firstName; 
@@ -21,6 +23,13 @@ public class RegisterRequest {
 	{
 		return new User(firstName, lastName, email, password);
 	}
+	
+	public boolean isNull() throws IllegalAccessException {
+		   for (Field f : getClass().getDeclaredFields())
+		       if (f.get(this) == null)
+		           return true;
+		   return false;
+		}
 
 	public String getFirstName() {
 		return firstName;
