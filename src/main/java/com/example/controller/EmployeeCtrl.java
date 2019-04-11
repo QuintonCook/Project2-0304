@@ -2,11 +2,11 @@ package com.example.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +31,7 @@ public class EmployeeCtrl {
 
 	@Autowired
 	public UserDao userDao;
-	
+
 	@Autowired
 	public PostDao postDao;
 
@@ -46,21 +46,23 @@ public class EmployeeCtrl {
 	// @CrossOrigin(origins="http://localhost:4200") is used to handle the request
 	// from a different origin
 	@RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
-	public String updateProfile(@RequestParam(name = "file") MultipartFile p, @RequestParam String firstName,
-			@RequestParam String lastName, @RequestParam String email, @RequestParam String password,
-			@RequestParam String description) {
-		try {
-			// modelMap.addAttribute("file", p);
-			// modelMap.addAttribute("firstName", firstname);
-			// modelMap.addAttribute("lastName", lastname);
+	public void updateProfile(@RequestParam(name = "file", required = false) MultipartFile p,
+			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
+			@RequestParam String password, @RequestParam String description) throws IOException {
+		// modelMap.addAttribute("file", p);
+		// modelMap.addAttribute("firstName", firstname);
+		// modelMap.addAttribute("lastName", lastname);
+		String photoName = null;
+		if (p != null) {
 			InputStream i = p.getInputStream();
-			String photoName = GrabPhoto.grabPho(i);
+			photoName = GrabPhoto.grabPho(i);
+		}
 
-			// System.out.println(email);
+		// System.out.println(email);
 
-			User u = userDao.selectByCred(email);
+		User u = userDao.selectByCred(email);
 
-			System.out.println(u);
+		if (u != null) {
 
 			u.setProfilePic(url + photoName);
 			u.setFirstname(firstName);
@@ -70,86 +72,70 @@ public class EmployeeCtrl {
 			u.setDescription(description);
 
 			userDao.updateUserProfile(u);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
-		return null;
 	}
 
 	// LOGIN REQUEST
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody User login(@RequestParam LoginRequest l) {
-		User u = userDao.selectByCred(l.getLoginEmail());
+	public @ResponseBody User login(@RequestBody LoginRequest l) {
 
-		// System.out.println(u);
+		System.out.println(l);
 
-		// catch null pointer exceptions later on
-		try {
-			if (u.getEmail().equals(l.getLoginEmail()) && u.getPassword().equals(l.getLoginPassword())) {
-				return u;// go to home page
-			}
-		} catch (NullPointerException e) {
-			e.printStackTrace();
+		if (l.getLoginEmail() != null && l.getLoginPassword() != null) {
+			User u = userDao.selectByCred(l.getLoginEmail());
+			return u;
+		} else {
+			return null;
 		}
 
-		return null;
 	}
-	
+
 	// REGISTER REQUEST
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public @ResponseBody void login(@RequestParam RegisterRequest r)
-	{
+	public @ResponseBody void register(@RequestParam RegisterRequest r) {
 		userDao.insert(r.toUser());
 	}
-	
-	// RESET PASSWORD REQUEST 
+
+	// RESET PASSWORD REQUEST
 	@RequestMapping(value = "/passwordreset", method = RequestMethod.POST)
 	public @ResponseBody void passwordReset(@RequestParam LoginRequest l) {
 		User u = userDao.selectByCred(l.getLoginEmail());
-		
+
 		u.setPassword(l.getLoginPassword());
-		
+
 		userDao.updateUserProfile(u);
 	}
-	
+
 	// GET POST
 	@RequestMapping(value = "/getpost", method = RequestMethod.GET)
-	public @ResponseBody List<Post> getPosts(@RequestParam User u)
-	{
-		List<Post> postList = postDao.searchByPoster(u); 
-		
-		return postList; 
+	public @ResponseBody List<Post> getPosts(@RequestParam User u) {
+		List<Post> postList = postDao.searchByPoster(u);
+
+		return postList;
 	}
-	
 
 	// GET SEARCH USER BY FIRSTNAME AND LASTNAME
 	@RequestMapping(value = "/searchuser", method = RequestMethod.GET)
-	public @ResponseBody List<User> getSearch(@RequestParam SearchRequest s)
-	{
+	public @ResponseBody List<User> getSearch(@RequestParam SearchRequest s) {
 		List<User> userList = userDao.searchByFirstLast(s.getFirstName(), s.getLastName());
-		
-		return userList; 
+
+		return userList;
 	}
-	
+
 	// GET SEARCH USER BY EMAIL
 	@RequestMapping(value = "/searchuseremail", method = RequestMethod.GET)
-	public @ResponseBody User getSearchEmail(@RequestParam String email)
-	{
+	public @ResponseBody User getSearchEmail(@RequestParam String email) {
 		User u = userDao.selectByCred(email);
-		
+
 		return u;
 	}
-	
-	// POST NUMBER OF LIKES 
+
+	// POST NUMBER OF LIKES
 	@RequestMapping(value = "/likepost", method = RequestMethod.POST)
-	public @ResponseBody void updateNumberOfLikes(@RequestParam Post p)
-	{
+	public @ResponseBody void updateNumberOfLikes(@RequestParam Post p) {
 		postDao.updatePostLikes(p);
-		
-		
+
 	}
-	
+
 }

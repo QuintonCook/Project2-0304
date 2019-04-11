@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.example.model.User;
@@ -15,6 +16,7 @@ import com.example.util.HibernateUtil;
 
 @Repository("userDao")
 @Transactional
+@Component
 public class UserDao {
 	
 	public UserDao() {
