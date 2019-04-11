@@ -2,14 +2,19 @@ package com.example.dao;
 
 
 import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
-import com.example.model.User;
 import com.example.model.User;
 import com.example.util.HibernateUtil;
 
+@Repository("userDao")
+@Transactional
 public class UserDao {
 	
 	public UserDao() {
@@ -34,6 +39,7 @@ public class UserDao {
 	public List<User> searchByFirstLast(String firstname, String lastname){
 		Session ses = HibernateUtil.getSession();
 		
+		@SuppressWarnings("unchecked")
 		Query<User> query = ses.createQuery("from User where firstname = :firstname and lastname = :lastname");
 		query.setParameter("firstname", firstname);
 		query.setParameter("lastname", lastname);
@@ -46,12 +52,14 @@ public class UserDao {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = ses.beginTransaction();
 		
-		ses.update(us);
+		ses.merge(us);
 		tx.commit();
+		
 	}
 	
 	public List<User> selectAll(){
 		Session ses = HibernateUtil.getSession();
+		@SuppressWarnings({ "unchecked", "deprecation" })
 		List<User> userList = ses.createCriteria(User.class).list();
 		return userList;
 	}

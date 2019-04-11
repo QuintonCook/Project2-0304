@@ -1,0 +1,28 @@
+/*.form-inline my-2 my-lg-0{
+    float: right;
+}*/
+#search{
+    float: right;
+    position: relative; right:41px; top: -50px;
+}
+#searchbuttoncolor{
+  color: white;
+  background-color: green;
+}
+.body{
+    background-color: #EDF0F5;
+  }
+    .titleName {
+    height: 104px;
+    background-color:	#3B5999;
+    color: white;
+    padding: 20px;
+  }
+  
+  .bar {
+    height: 754px;
+    width: 200px;
+    background-color: powderblue;
+    border-color: black;
+    border-width: thin;
+  }

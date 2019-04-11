@@ -1,0 +1,29 @@
+.updateInfo{
+    float:right;
+    margin-right: -100px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 55px;
+    padding: 10px;
+}
+.updatePic{
+    float: left;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+img{
+    max-height: 650px;
+    max-width: 650px;
+}
+#customFile{
+    width: 10px;
+}
+#chooseButton{
+    width: 500px;
+}
+#submitButton{ 
+    float: right;
+}

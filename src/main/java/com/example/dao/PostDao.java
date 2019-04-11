@@ -27,8 +27,9 @@ public class PostDao {
 	public List<Post> searchByPoster(User email){
 		Session ses = HibernateUtil.getSession();
 		
+		@SuppressWarnings("unchecked")
 		Query<Post> query = ses.createQuery("from Post where key = :email");
-		query.setParameter("email", email);
+		query.setParameter("email", email.getEmail());
 		
 		List<Post> list = query.list();
 		return list;
@@ -37,8 +38,18 @@ public class PostDao {
 	public List<Post> selectAll(){
 		Session ses = HibernateUtil.getSession();
 		
+		@SuppressWarnings({ "deprecation", "unchecked" })
 		List<Post> postList = ses.createCriteria(Post.class).list();
 		return postList;
+	}
+	
+	public void updatePostLikes(Post po) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = ses.beginTransaction();
+		
+		ses.merge(po);
+		tx.commit();
+		
 	}
 
 }

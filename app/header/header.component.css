@@ -1,0 +1,15 @@
+    .titleName {
+    height: 104px;
+    background-color:	#3B5999;
+    color: white;
+    padding: 20px;
+  }
+
+  #search{
+    float: right;
+    position: relative; right:41px; top: -50px;
+}
+#searchbuttoncolor{
+  color: white;
+  background-color: green;
+}

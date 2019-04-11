@@ -1,22 +1,22 @@
 package com.example.model;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="USERS")
 public class User {
+	
+	@Column(name="description")
+	private String description; 
+	
+	@Column(name="profilepic")
+	private String profilePic;
 	
 	@Column(name="firstname", nullable=false)
 	private String firstname;
@@ -74,11 +74,27 @@ public class User {
 		this.password = password;
 		this.email = email;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
 
 	public String getFirstname() {
 		return firstname;
 	}
-
+	
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
