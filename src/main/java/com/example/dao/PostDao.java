@@ -27,6 +27,7 @@ public class PostDao {
 	public List<Post> searchByPoster(User email){
 		Session ses = HibernateUtil.getSession();
 		
+		@SuppressWarnings("unchecked")
 		Query<Post> query = ses.createQuery("from Post where key = :email");
 		query.setParameter("email", email);
 		
@@ -37,6 +38,7 @@ public class PostDao {
 	public List<Post> selectAll(){
 		Session ses = HibernateUtil.getSession();
 		
+		@SuppressWarnings({ "deprecation", "unchecked" })
 		List<Post> postList = ses.createCriteria(Post.class).list();
 		return postList;
 	}

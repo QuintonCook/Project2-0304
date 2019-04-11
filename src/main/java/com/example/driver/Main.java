@@ -1,11 +1,9 @@
 package com.example.driver;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.dao.PostDao;
 import com.example.dao.UserDao;
-import com.example.model.Post;
 import com.example.model.User;
 import com.example.util.HibernateUtil;
 
