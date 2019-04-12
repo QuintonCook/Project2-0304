@@ -15,6 +15,9 @@ import javax.persistence.Table;
 @Table(name="POSTS")
 public class Post {
 	
+	@Column(name="numnberoflikes")
+	private Integer numberOfLikes; 
+	
 	@Column(name="url")
 	private String url;
 	
@@ -54,6 +57,8 @@ public class Post {
 		this.url = url;
 		this.body = body;
 		this.key = key;
+		
+		numberOfLikes = 0;
 	}
 
 	public Post(String url, int postId) {
@@ -72,6 +77,14 @@ public class Post {
 		super();
 		this.url = url;
 		this.body = body;
+	}
+
+	public Integer getNumberOfLikes() {
+		return numberOfLikes;
+	}
+
+	public void setNumberOfLikes(Integer numberOfLikes) {
+		this.numberOfLikes = numberOfLikes;
 	}
 
 	public String getUrl() {
