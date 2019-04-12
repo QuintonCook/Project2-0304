@@ -39,6 +39,11 @@ public class Post {
 	public Post() {
 		
 	}
+	
+	public void addLike()
+	{
+		numberOfLikes++; 
+	}
 
 	public Post(String url, String body, int postId, User key) {
 		super();

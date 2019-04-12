@@ -42,36 +42,13 @@ public class User {
 		
 	}
 
-	public User(String firstname, String lastname, String password, String email, List<Post> postList) {
+	public User(String email) {
 		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.password = password;
-		this.email = email;
-		this.postList = postList;
-	}
-
-	public User(String firstname, String lastname, List<Post> postList) {
-		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.postList = postList;
-	}
-
-	public User(String password, String email) {
-		super();
-		this.password = password;
 		this.email = email;
 	}
 
-	public User(List<Post> postList, String password, String email) {
-		super();
-		this.password = password;
-		this.email = email;
-		this.postList = postList;
-	}
 
-	public User(String firstname, String lastname, String password, String email) {
+	public User(String firstname, String lastname, String email, String password) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;

@@ -42,6 +42,7 @@ public class EmployeeCtrl {
 		return multipartResolver;
 	}
 
+	//tested
 	@RequestMapping(value = "/insertpost", method = RequestMethod.POST)
 	public void insertPost(@RequestParam(name = "file", required = false) MultipartFile p, @RequestParam String body, 
 			@RequestParam String email) throws IOException
@@ -59,6 +60,7 @@ public class EmployeeCtrl {
 		postDao.insert(post);
 	}
 	
+	//tested
 	@RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
 	public void updateProfile(@RequestParam(name = "file", required = false) MultipartFile p,
 			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
@@ -86,7 +88,7 @@ public class EmployeeCtrl {
 
 	}
 
-	// LOGIN REQUEST
+	// TESTED LOGIN REQUEST
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody User login(@RequestBody LoginRequest l) throws IllegalAccessException {
 
@@ -99,7 +101,7 @@ public class EmployeeCtrl {
 
 	}
 
-	// REGISTER REQUEST
+	// TESTED REGISTER REQUEST
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public @ResponseBody void register(@RequestBody RegisterRequest r) throws IllegalAccessException {
 
@@ -109,34 +111,38 @@ public class EmployeeCtrl {
 
 	}
 
-	// RESET PASSWORD REQUEST
+	// TESTED RESET PASSWORD REQUEST
 	@RequestMapping(value = "/passwordreset", method = RequestMethod.POST)
 	public @ResponseBody void passwordReset(@RequestBody LoginRequest l) throws IllegalAccessException {
 
 		if (!l.isNull()) {
 			User u = userDao.selectByCred(l.getLoginEmail());
-			u.setPassword(l.getLoginPassword());
-			userDao.updateUserProfile(u);
+			
+			if(u != null && !l.getLoginPassword().equals("")) {
+				u.setPassword(l.getLoginPassword());
+				userDao.updateUserProfile(u);
+			}			
 		}
 	}
 
-	// GET POST
+	// TESTED GET POST
 	@RequestMapping(value = "/getpost", method = RequestMethod.GET)
-	public @ResponseBody List<Post> getPosts(@RequestParam User u) {
-		List<Post> postList = postDao.searchByPoster(u);
+	public @ResponseBody List<Post> getPosts(@RequestParam String email) {
+		
+		List<Post> postList = postDao.searchByPoster(userDao.selectByCred(email));
 
 		return postList;
 	}
 
-	// GET SEARCH USER BY FIRSTNAME AND LASTNAME
+	// TESTED GET SEARCH USER BY FIRSTNAME AND LASTNAME
 	@RequestMapping(value = "/searchuser", method = RequestMethod.GET)
-	public @ResponseBody List<User> getSearch(@RequestParam SearchRequest s) {
+	public @ResponseBody List<User> getSearch(@RequestBody SearchRequest s) {
 		List<User> userList = userDao.searchByFirstLast(s.getFirstName(), s.getLastName());
 
 		return userList;
 	}
 
-	// GET SEARCH USER BY EMAIL
+	// TESTED GET SEARCH USER BY EMAIL
 	@RequestMapping(value = "/searchuseremail", method = RequestMethod.GET)
 	public @ResponseBody User getSearchEmail(@RequestParam String email) {
 		User u = userDao.selectByCred(email);
@@ -144,11 +150,14 @@ public class EmployeeCtrl {
 		return u;
 	}
 
-	// POST NUMBER OF LIKES
-	@RequestMapping(value = "/likepost", method = RequestMethod.POST)
-	public @ResponseBody void updateNumberOfLikes(@RequestParam Post p) {
+	// TESTED POST NUMBER OF LIKES
+	@RequestMapping(value = "/likepost", method = RequestMethod.GET)
+	public @ResponseBody void updateNumberOfLikes(@RequestParam int id) {
+		
+		Post p = postDao.getPost(id);
+		p.addLike();
+		
 		postDao.updatePostLikes(p);
-
 	}
 
 }
