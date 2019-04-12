@@ -1,12 +1,16 @@
 package com.example.model;
 
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="USERS")
@@ -32,6 +36,7 @@ public class User {
 	private String email;
 	
 	@OneToMany(mappedBy="key", fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<Post> postList;
 	
 	public User() {
@@ -133,11 +138,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [firstname=" + firstname + ", lastname=" + lastname + ", password=" + password + ", email=" + email
+		return "User [description=" + description + ", profilePic=" + profilePic + ", firstname=" + firstname
+				+ ", lastname=" + lastname + ", password=" + password + ", email=" + email + ", postList=" + postList
 				+ "]";
 	}
-	
-	
-	
 
+	
 }
