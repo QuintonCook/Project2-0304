@@ -10,6 +10,19 @@ import { UpdateComponent } from './update/update.component';
 import { FeedComponent } from './feed/feed.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
+import { AboutComponent } from './about/about.component';
+
+const appRoutes: Routes = [
+  { path: 'update-profile', component: UpdateComponent },
+  { path: 'view-profile', component: ProfileComponent },
+  { path: 'about-profile', component: AboutComponent },
+  /*{ path: 'heroes', component: HeroListComponent },
+ 
+  { path: '',   redirectTo: '/heroes', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }*/
+];
 
 
 @NgModule({
@@ -20,13 +33,19 @@ import { LoginComponent } from './login/login.component';
     NavbarComponent,
     UpdateComponent,
     FeedComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

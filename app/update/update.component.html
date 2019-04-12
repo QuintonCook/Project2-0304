@@ -1,29 +1,30 @@
+
 <form #updateForm="ngForm" (ngSubmit)="updateUser(updateForm)">
 <div class="updateInfo">
   <b><font size="5">Update Profile</font></b>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputEmail4">First name</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="First name" name="updateFirstName" ngModel>
+          <input type="email" class="form-control" id="inputEmail4" [(ngModel)]="user.firstname" placeholder="First name" name="updateFirstName" ngModel>
         </div>
         <div class="form-group col-md-6">
           <label for="inputPassword4">Last name</label>
-          <input type="text" class="form-control" id="inputPassword4" placeholder="Last name" name="updateLastName" ngModel>
+          <input type="text" class="form-control" id="inputPassword4" [(ngModel)]="user.lastname" placeholder="Last name" name="updateLastName" ngModel>
         </div>
       </div>
       <div class="form-group">
         <label for="inputAddress">Email</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="Email" name="updateEmail" ngModel>
+        <input type="text" class="form-control" id="inputAddress" [(ngModel)]="user.email" placeholder="Email" name="updateEmail" ngModel>
       </div>
       <div class="form-group">
         <label for="inputAddress2">Password</label>
-        <input type="password" class="form-control" id="inputAddress2" placeholder="Password" name="updatePassword" ngModel>
+        <input type="password" class="form-control" id="inputAddress2" [(ngModel)]="user.password" placeholder="Password" name="updatePassword" ngModel>
       </div>
       <div class="form-group">
           <label for="exampleFormControlTextarea1">Description</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="updateDescription" ngModel></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="user.description" placeholder="User description" name="updateDescription" ngModel></textarea>
         </div>
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button type="submit" class="btn btn-primary">Update</button>
 </div>
 
 <div class="updatePic">

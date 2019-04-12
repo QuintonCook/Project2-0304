@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { User } from '../user';
 
 
 @Component({
@@ -8,7 +9,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
-
+  @Input() user: User;
+  
   updateUser(form: NgForm) {
     console.log(form.value);
     // {email: '...', password: '...'}
