@@ -15,9 +15,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
 
 const appRoutes: Routes = [
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'login', component: LoginComponent},
   { path: 'update-profile', component: UpdateComponent },
   { path: 'view-profile', component: ProfileComponent },
   { path: 'about-profile', component: AboutComponent },
+  { path: 'header', component: HeaderComponent },
+  { path: 'feed', component: FeedComponent },
   /*{ path: 'heroes', component: HeroListComponent },
  
   { path: '',   redirectTo: '/heroes', pathMatch: 'full' },

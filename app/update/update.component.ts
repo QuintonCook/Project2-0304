@@ -9,7 +9,7 @@ import { User } from '../user';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
-  @Input() user: User;
+  @Input() user = new User();
   
   updateUser(form: NgForm) {
     console.log(form.value);

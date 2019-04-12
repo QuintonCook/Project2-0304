@@ -7,4 +7,12 @@ export class User{
     email:String;
     password:String;
     description:String;
+
+    public constructor(){
+        this.firstname="";
+        this.lastname="";
+        this.email="";
+        this.password="";
+        this.description="";
+    }
 }
