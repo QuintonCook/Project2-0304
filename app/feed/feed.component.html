@@ -1,3 +1,25 @@
-<p>
-  feed works!
-</p>
+<h1>Feed</h1>
+<ul class="feed" *ngFor="let post of posts">
+  <div>
+    <div class="container d-flex  float-right" style="height: auto;">
+      <div *ngIf="post.imgURL != ''">
+        <img
+          src="{{ post.imgURL }}"
+          class="img-fluid height: auto;"
+          alt="Bullshit"
+        />
+      </div>
+      <div class="jumbotron" style="width: 50%;height: auto">
+        <h5>
+          <span class=" text-success align-items-center">{{
+            post.ownerID
+          }}</span>
+        </h5>
+        <hr class="my-4" />
+        <p>
+          {{ post.postTxt }}
+        </p>
+      </div>
+    </div>
+  </div>
+</ul>
