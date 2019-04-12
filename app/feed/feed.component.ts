@@ -1,5 +1,7 @@
+import { PostListService } from './../post-list.service';
+import { POSTS } from './../posts';
+import { Post } from './../post';
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  posts: Post[] = [];
 
-  ngOnInit() {
-  }
-
+  constructor( private serv: PostListService) {
+                 this.serv.getPosts().subscribe(posts => this.posts = posts);
+    }
+    ngOnInit() {
+    }
 }
