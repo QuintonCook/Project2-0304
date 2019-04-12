@@ -11,11 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="POSTS")
 public class Post {
 	
-	@Column(name="numnberoflikes")
+	@Column(name="numberoflikes")
 	private Integer numberOfLikes; 
 	
 	@Column(name="url")
@@ -31,10 +33,16 @@ public class Post {
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="email")
+	@JsonBackReference
 	private User key;
 	
 	public Post() {
 		
+	}
+	
+	public void addLike()
+	{
+		numberOfLikes++; 
 	}
 
 	public Post(String url, String body, int postId, User key) {
@@ -121,10 +129,8 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [url=" + url + ", body=" + body + ", postId=" + postId + ", key=" + key + "]";
+		return "Post [numberOfLikes=" + numberOfLikes + ", url=" + url + ", body=" + body + ", postId=" + postId
+				+ ", key=" + key + "]";
 	}
-	
-	
-	
 
 }
