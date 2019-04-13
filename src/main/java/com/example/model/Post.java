@@ -87,6 +87,12 @@ public class Post {
 		this.body = body;
 	}
 
+	public Post(String body2, User u) {
+		this.body = body2;
+		this.key = u;
+	}
+	
+
 	public Integer getNumberOfLikes() {
 		return numberOfLikes;
 	}

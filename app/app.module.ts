@@ -14,8 +14,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
-const appRoutes: Routes = [
+/*const appRoutes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
   { path: 'update-profile', component: UpdateComponent },
@@ -26,9 +27,9 @@ const appRoutes: Routes = [
   /*{ path: 'heroes', component: HeroListComponent },
  
   { path: '',   redirectTo: '/heroes', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }*/
+  { path: '**', component: PageNotFoundComponent }
 ];
-
+*/
 
 @NgModule({
   declarations: [
@@ -40,18 +41,15 @@ const appRoutes: Routes = [
     FeedComponent,
     LoginComponent,
     ProfileComponent,
-    AboutComponent
+    AboutComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

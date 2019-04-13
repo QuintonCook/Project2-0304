@@ -17,12 +17,7 @@ export class LoginComponent implements OnInit {
 
   registerUser(form: NgForm) {
     console.log(form.value);
-    // {email: '...', password: '...'}
-    // ... <-- now use JSON.stringify() to convert form values to json.
-  }
-
-  loginUser(form: NgForm) {
-    console.log(form.value);
+    this.serv.insertUser(form);
     // {email: '...', password: '...'}
     // ... <-- now use JSON.stringify() to convert form values to json.
   }
@@ -33,17 +28,14 @@ export class LoginComponent implements OnInit {
 
 
   toggle(form: NgForm) {
-    this.serv.login(form).subscribe(data => {this.user=data});
-
-    if(this.user){
-      localStorage.setItem('User', JSON.stringify(this.user));
-      this._router.navigate(['/header']);
-    }
-
-    else{
-      alert("it no work");
-    }
-
+    this.serv.login(form).toPromise().then(data => {this.user=data}).then(
+      _ => {if(this.user){
+        localStorage.setItem('User', JSON.stringify(this.user));
+        this._router.navigate(['/header']);
+      }else{
+        alert("it no work");
+      }
+      });
 
 
 

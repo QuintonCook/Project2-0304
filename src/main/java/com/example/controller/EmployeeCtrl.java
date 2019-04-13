@@ -49,15 +49,15 @@ public class EmployeeCtrl {
 	public void insertPost(@RequestParam(name = "file", required = false) MultipartFile p, @RequestParam String body, 
 			@RequestParam String email) throws IOException
 	{
+		User u = userDao.selectByCred(email);
 		String photoName = null;
+		Post post = new Post(body, u);
+		
 		if (p != null) {
 			InputStream i = p.getInputStream();
 			photoName = GrabPhoto.grabPho(i);
+			post.setUrl(url+photoName);
 		}
-		
-		User u = userDao.selectByCred(email);
-
-		Post post = new Post(photoName, body, u);
 		
 		postDao.insert(post);
 	}
@@ -144,8 +144,8 @@ public class EmployeeCtrl {
 	// TESTED GET SEARCH USER BY FIRSTNAME AND LASTNAME
 	@CrossOrigin
 	@RequestMapping(value = "/searchuser", method = RequestMethod.GET)
-	public @ResponseBody List<User> getSearch(@RequestBody SearchRequest s) {
-		List<User> userList = userDao.searchByFirstLast(s.getFirstName(), s.getLastName());
+	public @ResponseBody List<User> getSearch(@RequestParam(required = false) String first, @RequestParam(required = false) String last) {
+		List<User> userList = userDao.searchByFirstLast(first, last);
 
 		return userList;
 	}

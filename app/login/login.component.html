@@ -14,7 +14,7 @@
 <div class="body">
     <div class="titleName">
         <h1><b><font size="7">theSocialNetwork</font></b></h1>
- <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)">
+ <form #loginForm="ngForm" (ngSubmit)="toggle(loginForm)">
           <div class="header">
             Email or phone
             <br>
@@ -26,7 +26,7 @@
             <input type="password" #titlePass id="password" size="23" name="loginPassword" ngModel>
           </div>
           <div class="header2">
-            <button class="loginButton" type="submit" id="myText" (click)="toggle(loginForm)">Log In</button>
+            <button class="loginButton" type="submit" id="myText">Log In</button>
             <!-- (click)="toggle()
             routerLink="/header"-->
           </div>

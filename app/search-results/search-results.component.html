@@ -1,0 +1,4 @@
+<app-header></app-header>
+<ul class="feed" *ngFor="let user of results">
+    <li><a routerLink="/view-profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></li>
+</ul>

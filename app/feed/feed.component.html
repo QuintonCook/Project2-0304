@@ -4,22 +4,21 @@
 <ul class="feed" *ngFor="let post of posts">
   <div>
     <div class="container d-flex  float-right" style="height: auto;">
-      <div *ngIf="post.imgURL != ''">
+      <div *ngIf="post.url">
         <img
-          src="{{ post.imgURL }}"
+          src="{{post.url}}"
           class="img-fluid height: auto;"
           alt="Bullshit"
         />
       </div>
       <div class="jumbotron" style="width: 50%;height: auto">
         <h5>
-          <span class=" text-success align-items-center">{{
-            post.ownerID
-          }}</span>
+          <span class="text-success align-items-center">{{post.postId}} Likes:{{post.numberOfLikes}}</span>
+          <button class = "button" (click)="like(post)">Like</button>
         </h5>
         <hr class="my-4" />
         <p>
-          {{ post.postTxt }}
+          {{ post.body }}
         </p>
       </div>
     </div>

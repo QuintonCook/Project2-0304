@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { PostListService } from '../post-list.service';
+import { User } from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +11,23 @@ import { NgForm } from '@angular/forms';
 })
 export class HeaderComponent implements OnInit {
 
-  loginUser(form: NgForm) {
-    console.log(form.value);
+  results:User[];
+  
+  searchUser(form: NgForm) {
+    let searchTokens = form.value['search'].split(" ");
+
+    this.serv.search(searchTokens[0],searchTokens[1]).subscribe(data=>{
+      this.results = data;
+    });
+
+    localStorage.setItem('results',JSON.stringify(this.results));
+    this._router.navigate(['/search']);
+
     // {email: '...', password: '...'}
     // ... <-- now use JSON.stringify() to convert form values to json.
   }
 
-  constructor() { }
+  constructor(private serv:PostListService, private _router:Router) { }
 
   ngOnInit() {
   }

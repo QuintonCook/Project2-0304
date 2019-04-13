@@ -13,11 +13,27 @@ const url = 'http://localhost:8080/Project2/'
 export class PostListService {
 
   login(f: NgForm): Observable<User>{
-    return this.http.post<User>(url+'login', f.value).pipe();
+    return this.http.post<User>(url+'login', f.value).pipe()
   }
 
   getPosts(email:String): Observable<Post[]> {
     return this.http.get<Post[]>(url+'getpost?email='+email).pipe();
+  }
+
+  insertUser(form:NgForm){
+    this.http.post(url+'register',form.value).subscribe();
+  }
+
+  likePost(id:number){
+    this.http.get(url+'likepost?id='+id).subscribe();
+  }
+
+  getUser(email:String):Observable<User>{
+    return this.http.get<User>(url+'searchuseremail?email='+email).pipe();
+  }
+
+  search(first:String, last:String):Observable<User[]>{
+    return this.http.get<User[]>(url+'searchuser?first='+first+'&last='+last).pipe();
   }
 
   constructor(private http:HttpClient) { }

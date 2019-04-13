@@ -7,6 +7,7 @@ export class User{
     email:String;
     password:String;
     description:String;
+    profilePic:String;
 
     public constructor(){
         this.firstname="";
