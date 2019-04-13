@@ -65,5 +65,5 @@ public class PostDao {
 		
 		return ses.get(Post.class, id);		 
 	}
-
+	
 }

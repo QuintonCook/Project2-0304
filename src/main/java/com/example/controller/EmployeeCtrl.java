@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +44,7 @@ public class EmployeeCtrl {
 	}
 
 	//tested
+	@CrossOrigin
 	@RequestMapping(value = "/insertpost", method = RequestMethod.POST)
 	public void insertPost(@RequestParam(name = "file", required = false) MultipartFile p, @RequestParam String body, 
 			@RequestParam String email) throws IOException
@@ -61,6 +63,7 @@ public class EmployeeCtrl {
 	}
 	
 	//tested
+	@CrossOrigin
 	@RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
 	public void updateProfile(@RequestParam(name = "file", required = false) MultipartFile p,
 			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
@@ -89,6 +92,7 @@ public class EmployeeCtrl {
 	}
 
 	// TESTED LOGIN REQUEST
+	@CrossOrigin
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody User login(@RequestBody LoginRequest l) throws IllegalAccessException {
 
@@ -102,6 +106,7 @@ public class EmployeeCtrl {
 	}
 
 	// TESTED REGISTER REQUEST
+	@CrossOrigin
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public @ResponseBody void register(@RequestBody RegisterRequest r) throws IllegalAccessException {
 
@@ -112,6 +117,7 @@ public class EmployeeCtrl {
 	}
 
 	// TESTED RESET PASSWORD REQUEST
+	@CrossOrigin
 	@RequestMapping(value = "/passwordreset", method = RequestMethod.POST)
 	public @ResponseBody void passwordReset(@RequestBody LoginRequest l) throws IllegalAccessException {
 
@@ -126,6 +132,7 @@ public class EmployeeCtrl {
 	}
 
 	// TESTED GET POST
+	@CrossOrigin
 	@RequestMapping(value = "/getpost", method = RequestMethod.GET)
 	public @ResponseBody List<Post> getPosts(@RequestParam String email) {
 		
@@ -135,6 +142,7 @@ public class EmployeeCtrl {
 	}
 
 	// TESTED GET SEARCH USER BY FIRSTNAME AND LASTNAME
+	@CrossOrigin
 	@RequestMapping(value = "/searchuser", method = RequestMethod.GET)
 	public @ResponseBody List<User> getSearch(@RequestBody SearchRequest s) {
 		List<User> userList = userDao.searchByFirstLast(s.getFirstName(), s.getLastName());
@@ -143,6 +151,7 @@ public class EmployeeCtrl {
 	}
 
 	// TESTED GET SEARCH USER BY EMAIL
+	@CrossOrigin
 	@RequestMapping(value = "/searchuseremail", method = RequestMethod.GET)
 	public @ResponseBody User getSearchEmail(@RequestParam String email) {
 		User u = userDao.selectByCred(email);
@@ -151,6 +160,7 @@ public class EmployeeCtrl {
 	}
 
 	// TESTED POST NUMBER OF LIKES
+	@CrossOrigin
 	@RequestMapping(value = "/likepost", method = RequestMethod.GET)
 	public @ResponseBody void updateNumberOfLikes(@RequestParam int id) {
 		
@@ -158,6 +168,16 @@ public class EmployeeCtrl {
 		p.addLike();
 		
 		postDao.updatePostLikes(p);
+	}
+	
+	// GET ALL POSTS
+	@CrossOrigin
+	@RequestMapping(value = "/allposts", method = RequestMethod.GET)
+	public @ResponseBody List<Post> getAllPosts()
+	{
+		List<Post> allPosts = postDao.selectAll();
+		
+		return allPosts;
 	}
 
 }
