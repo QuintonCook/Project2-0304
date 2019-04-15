@@ -1,6 +1,6 @@
 import { PostListService } from './../post-list.service';
 import { Post } from './../post';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user';
 @Component({
   selector: 'app-feed',
@@ -9,19 +9,22 @@ import { User } from '../user';
 })
 export class FeedComponent implements OnInit {
 
-  
+
   posts: Post[] = [];
-  user:User;
+  @Input()
+  user: User;
 
   constructor( private serv: PostListService) {}
 
     ngOnInit() {
-      this.user = JSON.parse(localStorage.getItem('User'));
-      this.serv.getPosts(this.user.email).subscribe(posts => this.posts = posts);
+      console.log(JSON.stringify(this.user));
+      this.serv.getAllPosts().subscribe(posts => this.posts = posts);
     }
 
-    like(p:Post){
-      p.numberOfLikes = p.numberOfLikes+1;
+    like(p: Post) {
+      p.numberOfLikes = p.numberOfLikes + 1;
       this.serv.likePost(p.postId);
     }
+
+
 }

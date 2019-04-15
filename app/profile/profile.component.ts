@@ -1,9 +1,10 @@
 import { HomepageComponent } from './../homepage/homepage.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, UrlSegment, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, JsonPipe } from '@angular/common';
 import { User } from '../user';
 import { PostListService } from '../post-list.service';
+import { Post } from '../post';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -12,28 +13,23 @@ import { PostListService } from '../post-list.service';
 export class ProfileComponent implements OnInit {
 
   currUrl: string;
-  
-  user:User;
-
+  posts: Post[] = [];
+  user: User;
   constructor( private route: ActivatedRoute,
-               private loc: Location, private serv:PostListService) {
+               private loc: Location, private serv: PostListService) {
     }
 
 
 
     ngOnInit() {
-      this.user = JSON.parse(localStorage.getItem('User'));
-      this.getEmail();
-      console.log(this.user);
+      const email = this.route.params.subscribe(email => {this.serv.getUser(email.email).toPromise().then(data => {
+        this.user = data;
+        console.log(this.user);
+      }); });
     }
-    getEmail() {
-      const email = this.route.snapshot.paramMap.get('email');
 
-      if(email !== this.user.email){
-        this.serv.getUser(email).subscribe(data =>{
-          this.user = data;
-        });
-      }
-      
+    like(p: Post) {
+      p.numberOfLikes = p.numberOfLikes + 1;
+      this.serv.likePost(p.postId);
     }
 }

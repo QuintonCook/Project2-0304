@@ -8,7 +8,7 @@ import { User } from '../user';
 })
 export class NavbarComponent implements OnInit {
 
-  user:User;
+  user: User;
   constructor() { }
 
   ngOnInit() {

@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<div>
+  <div>
+    <b><font size="5">Update Picture</font></b>
+    <input type="file" name="file" class="btn btn-light" id="chooseButton" ngModel (change)="getFiles($event)">
+  </div>
+  <div>
+    <label for="exampleFormControlTextarea1">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="post.body" placeholder="description" name="updateDescription" ngModel></textarea>
+      </div>
+      <button class="btn btn-outline-success my-2 my-sm-0" id="postbuttoncolor"  type="submit" (click)='insertPost()'>Post</button>
+</div>

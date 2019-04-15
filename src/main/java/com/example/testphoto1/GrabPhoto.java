@@ -18,8 +18,8 @@ import com.amazonaws.util.IOUtils;
 public class GrabPhoto {
 
    public static String grabPho(InputStream i) throws IOException {
-        String clientRegion = "us-east-2";
-        String bucketName = "theupchuckbucket";
+        String clientRegion = "us-east-1";
+        String bucketName = "kfccrispy";
         String timestamp = new Timestamp(System.currentTimeMillis()).toString();
         //2016-11-16 06:43:19.77
 
@@ -33,12 +33,8 @@ public class GrabPhoto {
             metadata.setContentType("image/jpg");
             metadata.addUserMetadata("x-amz-meta-title", "someTitle");
             
-            byte[] bytes = IOUtils.toByteArray(i);
-            metadata.setContentLength(bytes.length);
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-            
             // Upload a file as a new object with ContentType and title specified.
-            PutObjectRequest request = new PutObjectRequest(bucketName, timestamp, byteArrayInputStream, metadata);
+            PutObjectRequest request = new PutObjectRequest(bucketName, timestamp, i, metadata);
             
             s3Client.putObject(request);
         }

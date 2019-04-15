@@ -47,6 +47,9 @@ public class User {
 		this.email = email;
 	}
 
+	public void addPost(Post p) {
+		this.postList.add(p);
+	}
 
 	public User(String firstname, String lastname, String email, String password) {
 		super();

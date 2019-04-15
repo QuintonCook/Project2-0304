@@ -15,6 +15,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { InsertComponent } from './insert/insert.component';
+import { SendEmailComponent } from './send-email/send-email.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 /*const appRoutes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -25,7 +28,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
   { path: 'header', component: HeaderComponent },
   { path: 'feed', component: FeedComponent },
   /*{ path: 'heroes', component: HeroListComponent },
- 
+
   { path: '',   redirectTo: '/heroes', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -42,7 +45,10 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     LoginComponent,
     ProfileComponent,
     AboutComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    InsertComponent,
+    SendEmailComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

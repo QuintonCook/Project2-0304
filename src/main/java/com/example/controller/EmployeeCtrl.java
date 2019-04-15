@@ -18,6 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.example.dao.PostDao;
 import com.example.dao.UserDao;
+import com.example.email.EmailHandler;
 import com.example.model.LoginRequest;
 import com.example.model.Post;
 import com.example.model.RegisterRequest;
@@ -27,7 +28,7 @@ import com.example.testphoto1.GrabPhoto;
 @RestController
 public class EmployeeCtrl {
 
-	final String url = "https://s3.us-east-2.amazonaws.com/theupchuckbucket/";
+	final String url = "https://s3.us-east-1.amazonaws.com/kfccrispy/";
 
 	@Autowired
 	public UserDao userDao;
@@ -58,6 +59,7 @@ public class EmployeeCtrl {
 			post.setUrl(url+photoName);
 		}
 		
+		u.addPost(post);
 		postDao.insert(post);
 	}
 	
@@ -70,21 +72,17 @@ public class EmployeeCtrl {
 
 		String photoName = null;
 		
-		System.out.println("I'm Hit");
 		
 		if (file != null) {
 			InputStream i = file.getInputStream();
 			photoName = GrabPhoto.grabPho(i);
 		}
 		
-		System.out.println("PHOTO UP");
 
 		User u = userDao.selectByCred(email);
 
-		System.out.println(u);
 		
 		if (u != null) {
-			System.out.println(u);
 
 			u.setProfilePic(url + photoName);
 			u.setFirstname(firstname);
@@ -125,14 +123,15 @@ public class EmployeeCtrl {
 
 	// TESTED RESET PASSWORD REQUEST
 	@CrossOrigin
-	@RequestMapping(value = "/passwordreset", method = RequestMethod.POST)
-	public @ResponseBody void passwordReset(@RequestBody LoginRequest l) throws IllegalAccessException {
-
-		if (!l.isNull()) {
-			User u = userDao.selectByCred(l.getLoginEmail());
+	@RequestMapping(value = "/passwordreset", method = RequestMethod.GET)
+	public @ResponseBody void passwordReset(@RequestParam String email,@RequestParam String password) throws IllegalAccessException {
+System.out.println(email+" email shit");
+System.out.println(password+" pword shit");
+		if (email != null) {
+			User u = userDao.selectByCred(email);
 			
-			if(u != null && !l.getLoginPassword().equals("")) {
-				u.setPassword(l.getLoginPassword());
+			if(u != null && !password.equals("")) {
+				u.setPassword(password);
 				userDao.updateUserProfile(u);
 			}			
 		}
@@ -171,7 +170,9 @@ public class EmployeeCtrl {
 	@RequestMapping(value = "/likepost", method = RequestMethod.GET)
 	public @ResponseBody void updateNumberOfLikes(@RequestParam int id) {
 		
+		System.out.println(id);
 		Post p = postDao.getPost(id);
+		
 		p.addLike();
 		
 		postDao.updatePostLikes(p);
@@ -185,6 +186,14 @@ public class EmployeeCtrl {
 		List<Post> allPosts = postDao.selectAll();
 		
 		return allPosts;
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/reset",method = RequestMethod.GET)
+	public @ResponseBody void resetPassword(@RequestParam String email) throws Throwable
+	{
+		EmailHandler.setReciever(email);
+		EmailHandler.sendEmail();
 	}
 
 }

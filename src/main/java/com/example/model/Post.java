@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Post {
 	
 	@Column(name="numberoflikes")
-	private Integer numberOfLikes; 
+	private int numberOfLikes; 
 	
 	@Column(name="url")
 	private String url;
@@ -45,51 +45,11 @@ public class Post {
 		numberOfLikes++; 
 	}
 
-	public Post(String url, String body, int postId, User key) {
-		super();
-		this.url = url;
-		this.body = body;
-		this.postId = postId;
-		this.key = key;
-	}
-
-	public Post(String url, String body, int postId) {
-		super();
-		this.url = url;
-		this.body = body;
-		this.postId = postId;
-	}
-	
-	public Post(String url, String body, User key) {
-		super();
-		this.url = url;
-		this.body = body;
-		this.key = key;
-		
-		numberOfLikes = 0;
-	}
-
-	public Post(String url, int postId) {
-		super();
-		this.url = url;
-		this.postId = postId;
-	}
-
-	public Post(int postId, String body) {
-		super();
-		this.body = body;
-		this.postId = postId;
-	}
-
-	public Post(String url, String body) {
-		super();
-		this.url = url;
-		this.body = body;
-	}
 
 	public Post(String body2, User u) {
 		this.body = body2;
 		this.key = u;
+		numberOfLikes = 0;
 	}
 	
 
