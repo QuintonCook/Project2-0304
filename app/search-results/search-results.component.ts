@@ -12,6 +12,7 @@ export class SearchResultsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //console.log(JSON.parse(localStorage.getItem('results')));
     this.results = JSON.parse(localStorage.getItem('results'));
   }
 

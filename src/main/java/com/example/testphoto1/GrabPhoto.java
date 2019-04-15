@@ -2,6 +2,7 @@ package com.example.testphoto1;
 
 
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
@@ -12,6 +13,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.util.IOUtils;
 
 public class GrabPhoto {
 
@@ -31,8 +33,12 @@ public class GrabPhoto {
             metadata.setContentType("image/jpg");
             metadata.addUserMetadata("x-amz-meta-title", "someTitle");
             
+            byte[] bytes = IOUtils.toByteArray(i);
+            metadata.setContentLength(bytes.length);
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+            
             // Upload a file as a new object with ContentType and title specified.
-            PutObjectRequest request = new PutObjectRequest(bucketName, timestamp, i, metadata);
+            PutObjectRequest request = new PutObjectRequest(bucketName, timestamp, byteArrayInputStream, metadata);
             
             s3Client.putObject(request);
         }

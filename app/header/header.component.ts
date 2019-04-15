@@ -16,12 +16,10 @@ export class HeaderComponent implements OnInit {
   searchUser(form: NgForm) {
     let searchTokens = form.value['search'].split(" ");
 
-    this.serv.search(searchTokens[0],searchTokens[1]).subscribe(data=>{
-      this.results = data;
+    this.serv.search(searchTokens[0],searchTokens[1]).toPromise().then(data=>{this.results = data;}).then( _ =>{
+      localStorage.setItem('results',JSON.stringify(this.results));
+      this._router.navigate(['/search']);
     });
-
-    localStorage.setItem('results',JSON.stringify(this.results));
-    this._router.navigate(['/search']);
 
     // {email: '...', password: '...'}
     // ... <-- now use JSON.stringify() to convert form values to json.

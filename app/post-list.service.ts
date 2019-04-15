@@ -36,5 +36,9 @@ export class PostListService {
     return this.http.get<User[]>(url+'searchuser?first='+first+'&last='+last).pipe();
   }
 
+  updateProfile(form:FormData){
+    this.http.post(url+'updateprofile',form).subscribe();
+  }
+
   constructor(private http:HttpClient) { }
 }

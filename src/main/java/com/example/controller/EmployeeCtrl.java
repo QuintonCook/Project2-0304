@@ -21,7 +21,6 @@ import com.example.dao.UserDao;
 import com.example.model.LoginRequest;
 import com.example.model.Post;
 import com.example.model.RegisterRequest;
-import com.example.model.SearchRequest;
 import com.example.model.User;
 import com.example.testphoto1.GrabPhoto;
 
@@ -65,23 +64,31 @@ public class EmployeeCtrl {
 	//tested
 	@CrossOrigin
 	@RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
-	public void updateProfile(@RequestParam(name = "file", required = false) MultipartFile p,
-			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
-			@RequestParam String password, @RequestParam String description) throws IOException {
+	public void updateProfile(@RequestParam(name = "file", required = false) MultipartFile file,
+			@RequestParam(name = "firstname") String firstname, @RequestParam(name = "lastname") String lastname, @RequestParam(name = "email") String email,
+			@RequestParam(name = "password") String password, @RequestParam(name = "description") String description) throws IOException {
 
 		String photoName = null;
-		if (p != null) {
-			InputStream i = p.getInputStream();
+		
+		System.out.println("I'm Hit");
+		
+		if (file != null) {
+			InputStream i = file.getInputStream();
 			photoName = GrabPhoto.grabPho(i);
 		}
+		
+		System.out.println("PHOTO UP");
 
 		User u = userDao.selectByCred(email);
 
+		System.out.println(u);
+		
 		if (u != null) {
+			System.out.println(u);
 
 			u.setProfilePic(url + photoName);
-			u.setFirstname(firstName);
-			u.setLastname(lastName);
+			u.setFirstname(firstname);
+			u.setLastname(lastname);
 			u.setEmail(email);
 			u.setPassword(password);
 			u.setDescription(description);

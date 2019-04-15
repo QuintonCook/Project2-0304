@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class = "container">
-<form #updateForm="ngForm" (ngSubmit)="updateUser(updateForm)">
+<form>
 <div class="updateInfo">
   <b><font size="5">Update Profile</font></b>
       <div class="form-row">
@@ -26,14 +26,14 @@
           <label for="exampleFormControlTextarea1">Description</label>
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="user.description" placeholder="User description" name="updateDescription" ngModel></textarea>
         </div>
-      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="submit" class="btn btn-primary"(click)="updateUser()">Update</button>
 </div>
 
 <div class="updatePic">
     <img src="https://cdn.vox-cdn.com/thumbor/TiwabydzgLgAVBjjJvAO_dnKo_o=/0x16:1103x751/1200x800/filters:focal(0x16:1103x751)/cdn.vox-cdn.com/uploads/chorus_image/image/46840054/Screenshot_2015-07-27_15.11.13.0.0.png" alt="userPhoto">
     <br>
     <b><font size="5">Update Picture</font></b>
-      <input type="file" name="myFile" class="btn btn-light" id="chooseButton" name="fileName" ngModel>
+      <input type="file" name="file" class="btn btn-light" id="chooseButton" ngModel (change)="getFiles($event)"> 
       <!--
       <input type="submit" class="btn btn-primary" id="submitButton">
       -->
