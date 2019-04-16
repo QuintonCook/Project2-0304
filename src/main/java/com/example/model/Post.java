@@ -11,12 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="POSTS")
 public class Post {
 	
-	@Column(name="numnberoflikes")
-	private Integer numberOfLikes; 
+	@Column(name="numberoflikes")
+	private int numberOfLikes; 
 	
 	@Column(name="url")
 	private String url;
@@ -31,51 +33,25 @@ public class Post {
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="email")
+	@JsonBackReference
 	private User key;
 	
 	public Post() {
 		
 	}
-
-	public Post(String url, String body, int postId, User key) {
-		super();
-		this.url = url;
-		this.body = body;
-		this.postId = postId;
-		this.key = key;
+	
+	public void addLike()
+	{
+		numberOfLikes++; 
 	}
 
-	public Post(String url, String body, int postId) {
-		super();
-		this.url = url;
-		this.body = body;
-		this.postId = postId;
+
+	public Post(String body2, User u) {
+		this.body = body2;
+		this.key = u;
+		numberOfLikes = 0;
 	}
 	
-	public Post(String url, String body, User key) {
-		super();
-		this.url = url;
-		this.body = body;
-		this.key = key;
-	}
-
-	public Post(String url, int postId) {
-		super();
-		this.url = url;
-		this.postId = postId;
-	}
-
-	public Post(int postId, String body) {
-		super();
-		this.body = body;
-		this.postId = postId;
-	}
-
-	public Post(String url, String body) {
-		super();
-		this.url = url;
-		this.body = body;
-	}
 
 	public Integer getNumberOfLikes() {
 		return numberOfLikes;
@@ -119,10 +95,8 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [url=" + url + ", body=" + body + ", postId=" + postId + ", key=" + key + "]";
+		return "Post [numberOfLikes=" + numberOfLikes + ", url=" + url + ", body=" + body + ", postId=" + postId
+				+ ", key=" + key + "]";
 	}
-	
-	
-	
 
 }

@@ -11,14 +11,16 @@
 
 
     <div class="titleName">
+
+    <div class = "column">
         <h1><b><font size="7">theSocialNetwork</font></b></h1>
-
-        <form class="form-inline my-2 my-lg-0" id="search" #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" ngModel>
-            <button class="btn btn-outline-success my-2 my-sm-0" id="searchbuttoncolor" type="submit">Search</button>
-          </form>
-
     </div>
+ 
+        <form class="form-inline my-2 my-lg-0" id="search" #searchForm="ngForm" (ngSubmit)="searchUser(searchForm)">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" ngModel>
+            <button class="btn btn-outline-success my-2 my-sm-0" id="searchbuttoncolor"  type="submit">Search</button>
+        </form>
+</div>
 
 
 
@@ -29,9 +31,7 @@
 </body>
 </html>
 
-<router-outlet></router-outlet>
+<app-navbar></app-navbar>
 
-
-<router-outlet></router-outlet>
 
 

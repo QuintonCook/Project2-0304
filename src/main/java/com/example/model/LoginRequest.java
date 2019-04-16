@@ -1,5 +1,7 @@
 package com.example.model;
 
+import java.lang.reflect.Field;
+
 public class LoginRequest {
 
 	String loginEmail;
@@ -9,6 +11,13 @@ public class LoginRequest {
 	{
 		
 	}
+	
+	public boolean isNull() throws IllegalAccessException {
+		   for (Field f : getClass().getDeclaredFields())
+		       if (f.get(this) == null)
+		           return true;
+		   return false;
+		}
 
 	public LoginRequest(String loginEmail, String loginPassword) {
 		super();

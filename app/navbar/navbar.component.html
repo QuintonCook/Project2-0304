@@ -11,9 +11,14 @@
 
     <div class="bar">
       <nav class="nav flex-column" id="nav">
-        <a class="nav-link active" href="#">View Profile</a>
-        <a class="nav-link" href="#">Update Profile</a>
+        <a class="nav-link active" routerLink="/view-profile/{{user.email}}" routerLinkActive="active">View Profile </a>
+        <a class="nav-link" routerLink="/update-profile" routerLinkActive="active">Update Profile</a>
+        <a class="nav-link" routerLink="/feed" routerLinkActive="active">Feed</a>
+        <a class="nav-link" routerLink="/insert" routerLinkActive="active">Insert Post</a>
+        <a class="nav-link" href="#">Marketplace</a>
+        <a class="nav-link" routerLink="/about-profile" routerLinkActive="active">About us</a>
         <a class="nav-link" href="#">Search</a>
+        <a class="nav-link" (click)="logout()" routerLink="/login">logout</a>
       </nav>
     </div>
 
@@ -23,5 +28,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<router-outlet></router-outlet>

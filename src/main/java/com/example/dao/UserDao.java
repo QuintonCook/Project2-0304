@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.example.model.User;
@@ -15,6 +16,7 @@ import com.example.util.HibernateUtil;
 
 @Repository("userDao")
 @Transactional
+@Component
 public class UserDao {
 	
 	public UserDao() {
@@ -24,7 +26,7 @@ public class UserDao {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = ses.beginTransaction();
 		
-		ses.save(myUser);
+		ses.saveOrUpdate(myUser);
 		tx.commit();
 	}
 	
@@ -40,7 +42,7 @@ public class UserDao {
 		Session ses = HibernateUtil.getSession();
 		
 		@SuppressWarnings("unchecked")
-		Query<User> query = ses.createQuery("from User where firstname = :firstname and lastname = :lastname");
+		Query<User> query = ses.createQuery("from User where firstname like :firstname or lastname like :lastname");
 		query.setParameter("firstname", firstname);
 		query.setParameter("lastname", lastname);
 		

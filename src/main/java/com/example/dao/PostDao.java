@@ -2,14 +2,21 @@ package com.example.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.example.model.Post;
 import com.example.model.User;
 import com.example.util.HibernateUtil;
 
+@Repository("postDao")
+@Transactional
+@Component
 public class PostDao {
 	
 	public PostDao() {
@@ -24,12 +31,12 @@ public class PostDao {
 		tx.commit();
 	}
 	
-	public List<Post> searchByPoster(User email){
+	public List<Post> searchByPoster(User user){
 		Session ses = HibernateUtil.getSession();
 		
 		@SuppressWarnings("unchecked")
 		Query<Post> query = ses.createQuery("from Post where key = :email");
-		query.setParameter("email", email.getEmail());
+		query.setParameter("email", user);
 		
 		List<Post> list = query.list();
 		return list;
@@ -51,5 +58,12 @@ public class PostDao {
 		tx.commit();
 		
 	}
-
+	
+	public Post getPost(int id)
+	{
+		Session ses = HibernateUtil.getSession(); 
+		
+		return ses.get(Post.class, id);		 
+	}
+	
 }
