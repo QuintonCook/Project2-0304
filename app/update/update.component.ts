@@ -10,9 +10,10 @@ import { PostListService } from '../post-list.service';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
-  @Input() user = new User();
   @Input() file:File;
+  user:User;
   
+
   updateUser() {
 
     console.log(JSON.stringify(this.user));
@@ -29,6 +30,8 @@ export class UpdateComponent implements OnInit {
     
     this.serv.updateProfile(form);
 
+    localStorage.setItem('User',JSON.stringify(this.user));
+
     // {email: '...', password: '...'}
     // ... <-- now use JSON.stringify() to convert form values to json.
   }
@@ -40,6 +43,7 @@ export class UpdateComponent implements OnInit {
   constructor(private serv:PostListService) { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('User'));
   }
 
 }

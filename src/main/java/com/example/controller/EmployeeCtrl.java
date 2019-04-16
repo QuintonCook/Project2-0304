@@ -71,20 +71,17 @@ public class EmployeeCtrl {
 			@RequestParam(name = "password") String password, @RequestParam(name = "description") String description) throws IOException {
 
 		String photoName = null;
-		
+		User u = userDao.selectByCred(email);
 		
 		if (file != null) {
 			InputStream i = file.getInputStream();
 			photoName = GrabPhoto.grabPho(i);
+			u.setProfilePic(url + photoName);
 		}
-		
-
-		User u = userDao.selectByCred(email);
-
 		
 		if (u != null) {
 
-			u.setProfilePic(url + photoName);
+			
 			u.setFirstname(firstname);
 			u.setLastname(lastname);
 			u.setEmail(email);

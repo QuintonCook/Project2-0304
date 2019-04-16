@@ -28,6 +28,9 @@ export class HeaderComponent implements OnInit {
   constructor(private serv:PostListService, private _router:Router) { }
 
   ngOnInit() {
+    if(!localStorage.getItem('User')){
+      this._router.navigate(['/login']);
+    }
   }
 
 }
