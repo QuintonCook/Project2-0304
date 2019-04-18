@@ -1,39 +1,43 @@
 <app-header></app-header>
-<div>
-  <div class="container d-flex  float-left" style="height: auto;">
-    <div>
-        <img
-          src="{{user.profilePic}}"
-          class="img-fluid max-width: 100%; height: auto;"/>
-    </div>
-    <div class="jumbotron" style="width: 50%;height: auto">
-      <h1>
-        <span class=" text-success align-items-center">{{user.firstname}} {{user.lastname}}</span>
-      </h1>
-      <hr class="my-4" />
-      <h4 class="display-7">DESC</h4>
-      <p>
-        {{user.description}}
-      </p>
-    </div>
+<div id="this">
+  <div id="this0">
+    <h1>User Profile</h1>
   </div>
+    <div class="container d-flex  float-right" style="height: auto;" id="what">
+      <div id="what1">
+          <img src="{{user.profilePic}}" class="img-fluid max-width: 100%; height: auto;"/>
+          <!--
+          class="img-fluid max-width: 100%; height: auto;"
+            -->
+      </div>
+      <div class="jumbotron" id="what2">
+        <h1>
+          <span class=" text-success align-items-center">{{user.firstname}} {{user.lastname}}</span>
+        </h1>
+        <hr class="my-4" />
+        <h4 class="display-7">Description</h4>
+        <p>
+          {{user.description}}
+        </p>
+      </div>
+    </div>
 </div>
-<div>
-<h1>Feed</h1>
-<ul class="feed"  *ngFor="let post of user.postList">
-  <div>
-    <div class="container d-flex  float-right" style="height: auto;">
-      <div *ngIf="post.url">
+<!--
+<h1>User Profile</h1>
+-->
+<div class="feed"  *ngFor="let post of user.postList">
+    <div class="container d-flex  float-right" style="height: auto;" id="div2">
+      <div *ngIf="post.url" id="div4">
         <img
           src="{{post.url}}"
           class="img-fluid height: auto;"
-          alt="Bullshit"
+          alt="B"
         />
       </div>
-      <div class="jumbotron" style="width: 50%;height: auto">
+      <div class="jumbotron" id="div3">
         <h5>
           <span class="text-success align-items-center">{{post.postId}} Likes:{{post.numberOfLikes}}</span>
-          <button class = "button" (click)="like(post)">Like</button>
+          <button class = "btn btn-primary" id="button" (click)="like(post)">Like</button>
         </h5>
         <hr class="my-4" />
         <p>
@@ -41,6 +45,11 @@
         </p>
       </div>
     </div>
+
+    <br />
+
   </div>
-</ul>
-</div>
+
+<!--
+style="width: 50%;height: auto"
+  -->

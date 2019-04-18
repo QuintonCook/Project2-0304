@@ -3,4 +3,5 @@ export class Post {
   postId: number;
   body: string;
   url: string;
+  email: string;
 }

@@ -1,0 +1,47 @@
+h1{
+    color: #3B5999;
+    margin-left: 250px;
+    margin-top: 10px;
+    padding-bottom: 20px;
+}
+#div1{
+  border: 2px solid red;
+}
+#div2{
+    /*border: 2px solid blue;*/
+    border-top: 3px solid darkgray;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-right: 170px;
+}
+#div3{
+    /*border: 2px solid green;*/
+    height: auto;
+    width: 50%;
+    max-height: 500px;
+    max-width: 50%;
+}
+#div4{
+    text-align: center;
+    /*border: 2px solid orange;*/
+    height: auto;
+    width: 50%;
+    max-height: 500px;
+    max-width: 50%;
+}
+img{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.button{
+    float: right;
+    background-color: #3B5999;
+    color: white;
+    border-radius: 5px;
+}
+#button{
+    float: right;
+}

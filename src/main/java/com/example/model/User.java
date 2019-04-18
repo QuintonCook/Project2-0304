@@ -1,5 +1,6 @@
 package com.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -57,6 +58,8 @@ public class User {
 		this.lastname = lastname;
 		this.password = password;
 		this.email = email;
+		this.postList = new ArrayList<Post>();
+		this.profilePic = "";
 	}
 	
 	public String getDescription() {

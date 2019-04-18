@@ -1,0 +1,19 @@
+#div0{
+    margin-top: 10px;
+    margin-left: 225px;
+}
+#div1{
+    border: 2px solid black;
+    border-radius: 5px;
+    height:auto;
+    width: 400px;
+    margin-top: 80px;
+    margin-left: 740px;
+}
+#div2{
+    border-top: 2px solid rgb(134, 134, 134);
+    font-size: 20px;
+}
+a{
+    padding-left: 10px;
+}

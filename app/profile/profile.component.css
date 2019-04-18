@@ -1,0 +1,75 @@
+#div2{
+    /*border: 2px solid blue;*/
+    margin-right: 170px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 3px solid darkgray;
+}
+#div3{
+    border: 2px solid green;
+    height: auto;
+    width: 50%;
+    max-height: 500px;
+    max-width: 50%;
+}
+#div4{
+    text-align: center;
+    /*border: 2px solid orange;*/
+    height: auto;
+    width: 50%;
+    max-height: 500px;
+    max-width: 50%;
+}
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  /*
+  max-height: 500px;
+  max-width: 50%;
+  */
+}
+#this0{
+    /*border: 2px solid grey;*/
+}
+#this1{
+    /*border: 2px solid brown;*/
+    float: right;
+}
+#what{
+    /*border: 2px solid pink;*/
+    margin-right: 170px;
+    padding-bottom: 10px;
+}
+#what1{
+    text-align: center;
+    /*border: 2px solid yellow;*/
+    height: auto;
+    width: 50%;
+    max-height: 500px;
+    max-width: 50%;
+}
+#what2{
+    /*border: 2px solid red;*/
+    height: auto;
+    width: 50%;
+    max-height: 500px;
+    max-width: 50%;
+}
+.button{
+    float: right;
+    background-color: #3B5999;
+    color: white;
+    border-radius: 5px;
+}
+#button{
+    float: right;
+}
+h1{
+    color: #3B5999;
+    margin-left: 250px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}

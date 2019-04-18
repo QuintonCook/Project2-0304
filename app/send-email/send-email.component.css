@@ -1,0 +1,36 @@
+.titleName {
+    height: 104px;
+    background-color:	#3B5999;
+    color: white;
+    padding: 20px;
+}
+body{
+    background-color: #EDF0F5;
+    height: 859px;
+}
+#div1{
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 150px;
+    width:480px;
+    margin-top: 280px;
+    margin-left: 620px;
+    background: white;
+    
+}
+#div2{
+    border-top: 2px solid rgb(107, 106, 106);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#butt{
+    float: right;
+    margin-right: 15px;
+}
+#text{
+    width: 387px;
+}
+#div0{
+    padding-top: 12px;
+    padding-bottom: 5px;
+}
