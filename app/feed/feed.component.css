@@ -35,6 +35,9 @@ img{
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
+
+  
+  max-height: 500px;
 }
 .button{
     float: right;

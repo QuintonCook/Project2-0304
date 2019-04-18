@@ -26,11 +26,14 @@ img{
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
-  /*
+
+  /*height:500px;*/
   max-height: 500px;
   max-width: 50%;
-  */
+
+  
 }
+
 #this0{
     /*border: 2px solid grey;*/
 }
