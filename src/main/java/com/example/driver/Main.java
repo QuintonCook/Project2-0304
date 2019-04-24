@@ -19,11 +19,11 @@ public class Main {
 	
 	public static void insertInitialValues() {
 		//Users
-		 User user = new User("Quinton", "Cook", "qc1", "Quinton_Cook@gamil.com");
-		User user1 = new User("Meme", "Lopez", "ml1", "Meme_Lopez@gmail.com");
-		User user2 = new User("Daniel", "Serna", "ds1", "Daniel_Serna@gmail.com");
-		User user3 = new User("David", "Deyoung", "dd1", "David_Deyoung@gmail.com");
-		User user4 = new User("test", "test", "test", "test@gmail.com");
+		 User user = new User("Quinton", "Cook", "Quinton_Cook@gamil.com","qc1" );
+		User user1 = new User("Meme", "Lopez", "Meme_Lopez@gmail.com", "ml1");
+		User user2 = new User("Daniel", "Serna", "Daniel_Serna@gmail.com", "ds1");
+		User user3 = new User("David", "Deyoung", "David_Deyounge@gmail.com","dd1" );
+		User user4 = new User("test", "test", "test@gmail.com", "test" );
 		User test = new User();
 		test.setEmail(user4.getEmail());
 		test.setFirstname("tester");
@@ -45,32 +45,6 @@ public class Main {
 		for (User x: myList) {
 	         System.out.println(x.toString());
 	      }
-		
-//		Post p = new Post("this@gmail.com", "Post1");
-//		Post p1 = new Post("that@gmail.com", "Post2");
-//		Post p2 = new Post("what@gmail.com", "Post3");
-//		postDao.insert(p);
-//		postDao.insert(p1);
-//		postDao.insert(p2);
-		
-//		List<Post> myList = postDao.selectAll();
-//		for(Post x: myList) {
-//			System.out.println(x.toString());
-//		}
-		
-		// User u1 = new User("user", "user", "uu1", "user@gmail.com");
-		/*User u2 = new User("fn", "lm", "fl", "firstLast@gmail.com");
-		Post p4 = new Post("url1", "post", u1);
-		Post p5 = new Post("url2", "post2", u2);
-		postDao.insert(p4);
-		postDao.insert(p5);*/
-//		List<Post> myList = postDao.searchByPoster(u1);
-//		for(Post x: myList) {
-//			System.out.println(x.toString());
-//		}
-		
-		
-		
 		
 		System.out.println(userDao.selectByCred("Quinton_Cook@gamil.com"));
 		

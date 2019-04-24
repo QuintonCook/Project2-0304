@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<div id="div1">
+  
+  <div id="div2">
+    <b><font size="5">Update Picture</font></b>
+    <input type="file" name="file" class="btn btn-light" id="chooseButton" ngModel (change)="getFiles($event)">
+  </div>
+  <div id="div3">
+    <label for="exampleFormControlTextarea1"><b><font size="5">Post</font></b></label>
+        <textarea class="form-control" style="width:500px" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="post.body" placeholder="Post" name="updateDescription" ngModel></textarea>
+        <button class="btn btn-primary" id="postbuttoncolor"  type="submit" (click)='insertPost()'>Post</button>
+  </div>
+  <!--
+      <button class="btn btn-primary" id="postbuttoncolor"  type="submit" (click)='insertPost()'>Post</button>
+  -->
+</div>

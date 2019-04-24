@@ -71,3 +71,7 @@
     border-width: thin;
     color: white;
   }
+  a{
+    float: right;
+    margin-right: 50px;
+  }

@@ -1,12 +1,16 @@
 package com.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="USERS")
@@ -32,47 +36,30 @@ public class User {
 	private String email;
 	
 	@OneToMany(mappedBy="key", fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<Post> postList;
 	
 	public User() {
 		
 	}
 
-	public User(String firstname, String lastname, String password, String email, List<Post> postList) {
+	public User(String email) {
+		super();
+		this.email = email;
+	}
+
+	public void addPost(Post p) {
+		this.postList.add(p);
+	}
+
+	public User(String firstname, String lastname, String email, String password) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.password = password;
 		this.email = email;
-		this.postList = postList;
-	}
-
-	public User(String firstname, String lastname, List<Post> postList) {
-		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.postList = postList;
-	}
-
-	public User(String password, String email) {
-		super();
-		this.password = password;
-		this.email = email;
-	}
-
-	public User(List<Post> postList, String password, String email) {
-		super();
-		this.password = password;
-		this.email = email;
-		this.postList = postList;
-	}
-
-	public User(String firstname, String lastname, String password, String email) {
-		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.password = password;
-		this.email = email;
+		this.postList = new ArrayList<Post>();
+		this.profilePic = "";
 	}
 	
 	public String getDescription() {
@@ -133,11 +120,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [firstname=" + firstname + ", lastname=" + lastname + ", password=" + password + ", email=" + email
+		return "User [description=" + description + ", profilePic=" + profilePic + ", firstname=" + firstname
+				+ ", lastname=" + lastname + ", password=" + password + ", email=" + email + ", postList=" + postList
 				+ "]";
 	}
-	
-	
-	
 
+	
 }

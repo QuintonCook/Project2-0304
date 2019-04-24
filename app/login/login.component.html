@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<ng-container *ngIf="show">
+  <!-- *ngIf="show"-->
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -12,7 +14,7 @@
 <div class="body">
     <div class="titleName">
         <h1><b><font size="7">theSocialNetwork</font></b></h1>
- <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)">
+ <form #loginForm="ngForm" (ngSubmit)="toggle(loginForm)">
           <div class="header">
             Email or phone
             <br>
@@ -25,6 +27,8 @@
           </div>
           <div class="header2">
             <button class="loginButton" type="submit" id="myText">Log In</button>
+            <!-- (click)="toggle()
+            routerLink="/header"-->
           </div>
         </form>
     </div>
@@ -58,12 +62,12 @@
         </div>
         <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
       </form>
-
+        <br>
+        <font size="4"><a routerLink="/sendemail" routerLinkActive="active">Forgot Password?</a></font>
     </div>
 
   </div>
 </div>
-
 
 
 
@@ -74,7 +78,4 @@
 </body>
 </html>
 
-<router-outlet></router-outlet>
-
-
-<router-outlet></router-outlet>
+</ng-container>

@@ -1,10 +1,11 @@
 .updateInfo{
     float:right;
-    margin-right: -100px;
+    margin-right: -175px;
     border: 2px solid black;
     border-radius: 5px;
     margin-top: 55px;
     padding: 10px;
+    display: inline;
 }
 .updatePic{
     float: left;
@@ -12,7 +13,8 @@
     border-radius: 5px;
     padding: 10px;
     margin-left: 30px;
-    margin-top: 30px;
+    margin-top: 55px;
+    display: inline;
 }
 img{
     max-height: 650px;

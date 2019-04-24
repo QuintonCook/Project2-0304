@@ -2,6 +2,7 @@ package com.example.testphoto1;
 
 
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
@@ -12,12 +13,13 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.util.IOUtils;
 
 public class GrabPhoto {
 
    public static String grabPho(InputStream i) throws IOException {
-        String clientRegion = "us-east-2";
-        String bucketName = "theupchuckbucket";
+        String clientRegion = "us-east-1";
+        String bucketName = "kfccrispy";
         String timestamp = new Timestamp(System.currentTimeMillis()).toString();
         //2016-11-16 06:43:19.77
 
