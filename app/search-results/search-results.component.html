@@ -1,4 +1,9 @@
 <app-header></app-header>
-<ul class="feed" *ngFor="let user of results">
-    <li><a routerLink="/view-profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></li>
-</ul>
+<div id="div0">
+    <font size="67"><b>Search Results</b></font>
+</div>
+<div id="div1">
+    <div class="feed" *ngFor="let user of results" id="div2">
+        <a routerLink="/view-profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a>
+    </div>
+</div>
